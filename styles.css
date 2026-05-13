@@ -701,7 +701,7 @@ h3 {
   min-height: 100%;
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--background) 32%, transparent), color-mix(in srgb, var(--primary) 30%, transparent)),
-    url("assets/hardware-manufacturing-pcb.jpg") center / cover,
+    url("assets/hardware-manufacturing-pcb-styled.jpg") center / cover,
     var(--surface-3);
   display: grid;
   place-items: center;
