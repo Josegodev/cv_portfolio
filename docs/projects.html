@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Selected backend and applied AI projects by Jose Gonzalez Oliva.">
+  <meta name="description" content="Selected manufacturing, backend and applied AI projects by Jose Gonzalez Oliva.">
   <title>Projects | Jose Gonzalez Oliva</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   <header class="site-header">
     <a class="brand" href="index.html">
       <span class="brand-mark">JGO</span>
-      <span><strong>Jose Gonzalez Oliva</strong><small>Projects // Systems</small></span>
+      <span><strong>Jose Gonzalez Oliva</strong><small>Manufacturing // Systems</small></span>
     </a>
     <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
     <nav class="site-nav" data-site-nav>
@@ -24,22 +24,23 @@
       <a href="experience.html">Experience</a>
       <a class="active" href="projects.html">Projects</a>
       <a href="ai-assisted-development.html">AI note</a>
-      <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">◐</button>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">Theme</button>
     </nav>
   </header>
 
   <main id="content">
     <section class="page-hero">
       <div>
-        <p class="eyebrow">SYSTEM_ARCHITECTURE // AI_DEPLOYMENTS</p>
-        <h1>Curated projects with safe public framing.</h1>
-        <p class="lead">A public view of private or local work: advanced prototypes, backend experiments, RAG pipelines, AI interfaces, automation flows and synthetic examples. No private logs, corpora, tokens or confidential data are exposed.</p>
+        <p class="eyebrow">HARDWARE_CONTEXT // AI_AUTOMATION</p>
+        <h1>Projects framed around physical systems, traceability and automation.</h1>
+        <p class="lead">A public view of private or local work: manufacturing-oriented automation, backend experiments, RAG pipelines, AI interfaces and synthetic examples. The engineering lens is hardware-first: real processes, evidence, documentation and quality loops.</p>
       </div>
-      <img src="assets/projects-screen.png" alt="Projects gallery interface preview">
+      <img class="hardware-photo projects-photo" src="assets/hardware-manufacturing-pcb.jpg" alt="Close view of printed circuit boards and schematic traces">
     </section>
 
     <section class="project-toolbar" aria-label="Project filters">
       <button class="filter-button active" type="button" data-project-filter="all">All</button>
+      <button class="filter-button" type="button" data-project-filter="hardware">Hardware</button>
       <button class="filter-button" type="button" data-project-filter="backend">Backend</button>
       <button class="filter-button" type="button" data-project-filter="rag">RAG</button>
       <button class="filter-button" type="button" data-project-filter="automation">Automation</button>
@@ -48,58 +49,58 @@
     </section>
 
     <section class="project-grid" data-project-grid>
-      <article class="project-card featured" id="nucleo" data-project data-tags="backend python redis gcp orchestration agents">
+      <article class="project-card featured" id="nucleo" data-project data-tags="hardware manufacturing backend python redis gcp orchestration agents">
         <div class="project-media system-visual" aria-hidden="true"><span>NUCLEO</span></div>
         <div class="project-body">
-          <p class="eyebrow">CORE_SYSTEM · 2024</p>
+          <p class="eyebrow">CORE_SYSTEM | HARDWARE-AWARE BACKEND</p>
           <h2>NUCLEO Framework</h2>
-          <p>High-performance backend orchestration concept for multi-modal AI agents, state management and distributed task flows.</p>
+          <p>Backend orchestration concept for industrial and AI workflows: state management, agent coordination and controlled execution around real process evidence.</p>
           <ul>
-            <li>Context-aware caching to reduce token waste.</li>
+            <li>Designed around traceable inputs, repeatable actions and reviewable outputs.</li>
             <li>Asynchronous stream handling for real-time inference patterns.</li>
-            <li>Backend design focus: reliability, visibility and controlled boundaries.</li>
+            <li>Manufacturing mindset: reliability, visibility and controlled boundaries.</li>
           </ul>
           <div class="chip-row">
+            <a class="chip" href="experience.html#skills">Manufacturing</a>
             <a class="chip" href="experience.html#skills">Python</a>
-            <a class="chip" href="experience.html#skills">Redis</a>
             <a class="chip" href="#samples">Synthetic traces</a>
           </div>
         </div>
       </article>
 
-      <article class="project-card" id="telegram" data-project data-tags="interface fastapi webhooks bot ai telegram">
-        <p class="eyebrow">INTERFACE</p>
-        <h2>Telegram AI Orchestrator</h2>
-        <p>Asynchronous bot infrastructure for mobile-first LLM interactions, notification streams and multi-agent task coordination.</p>
-        <button class="detail-toggle" type="button" data-detail-toggle>Show technical notes</button>
-        <div class="detail-panel" hidden>
-          <p>Related emphasis: webhook routing, command parsing, observability, error handling and safe separation between user input and execution logic.</p>
-          <a href="case-studies/telegram-observability.html">Open case study</a>
+      <article class="project-card" id="automation" data-project data-tags="hardware manufacturing automation docker sqlite reporting health checks python excel">
+        <p class="eyebrow">WORKFLOW</p>
+        <h2>Operational Automation</h2>
+        <p>CI/CD-inspired pipeline thinking for internal reporting, quality evidence, backend health checks and repeatable operational routines.</p>
+        <div class="mini-metrics">
+          <span><b>12h</b> saved/week target</span>
+          <span><b>0%</b> manual-error goal</span>
         </div>
-        <div class="chip-row"><span class="chip">FastAPI</span><span class="chip">Webhooks</span><span class="chip">Observability</span></div>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Excel</span><span class="chip">Reports</span></div>
       </article>
 
-      <article class="project-card" id="rag" data-project data-tags="rag ollama chroma vector bm25 citations evidence">
-        <p class="eyebrow">ALGORITHM</p>
+      <article class="project-card" id="rag" data-project data-tags="rag hardware documentation ollama chroma vector bm25 citations evidence">
+        <p class="eyebrow">TECHNICAL EVIDENCE</p>
         <h2>Evidence-First RAG</h2>
-        <p>Retrieval pipeline prioritizing source credibility, citation accuracy and verifiable answers over raw speed.</p>
+        <p>Retrieval pipeline prioritizing source credibility, citation accuracy and verifiable answers for technical documentation contexts.</p>
         <button class="detail-toggle" type="button" data-detail-toggle>Show technical notes</button>
         <div class="detail-panel" hidden>
-          <p>Implements hybrid retrieval thinking, feedback loops for hallucination checks and documentation-first evaluation.</p>
+          <p>Useful for industrial documentation review: hybrid retrieval, evidence ranking and feedback loops for hallucination checks.</p>
           <a href="case-studies/rag-evidence-first.html">Open case study</a>
         </div>
         <div class="chip-row"><span class="chip">Ollama</span><span class="chip">Chroma</span><span class="chip">BM25</span></div>
       </article>
 
-      <article class="project-card" id="automation" data-project data-tags="automation docker sqlite reporting health checks python excel">
-        <p class="eyebrow">WORKFLOW</p>
-        <h2>Operational Automation</h2>
-        <p>CI/CD-inspired pipeline thinking for internal reporting, backend health checks and repeatable operational routines.</p>
-        <div class="mini-metrics">
-          <span><b>12h</b> saved/week target</span>
-          <span><b>0%</b> manual-error goal</span>
+      <article class="project-card" id="telegram" data-project data-tags="interface fastapi webhooks bot ai telegram automation">
+        <p class="eyebrow">INTERFACE</p>
+        <h2>Telegram AI Orchestrator</h2>
+        <p>Asynchronous bot infrastructure for mobile-first LLM interactions, notification streams and multi-agent task coordination.</p>
+        <button class="detail-toggle" type="button" data-detail-toggle>Show technical notes</button>
+        <div class="detail-panel" hidden>
+          <p>Related emphasis: webhook routing, command parsing, observability, error handling and separation between user input and execution logic.</p>
+          <a href="case-studies/telegram-observability.html">Open case study</a>
         </div>
-        <div class="chip-row"><span class="chip">Python</span><span class="chip">SQLite</span><span class="chip">Reports</span></div>
+        <div class="chip-row"><span class="chip">FastAPI</span><span class="chip">Webhooks</span><span class="chip">Observability</span></div>
       </article>
 
       <article class="project-card" id="llm-lab" data-project data-tags="llm research pytorch huggingface benchmarks evaluation">
@@ -132,7 +133,7 @@
   </main>
 
   <footer class="site-footer">
-    <span>© 2026 Jose Gonzalez Oliva · SYSTEM_STATUS: OPERATIONAL</span>
+    <span>&copy; 2026 Jose Gonzalez Oliva | SYSTEM_STATUS: OPERATIONAL</span>
     <nav>
       <a href="experience.html">Experience</a>
       <a href="index.html">Overview</a>

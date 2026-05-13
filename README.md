@@ -1,6 +1,6 @@
 # CV Portfolio - Jose Gonzalez Oliva
 
-Interactive static CV portfolio for GitHub Pages, focused on Applied AI, Backend Systems, RAG evaluation, automation, traceability and industrial engineering experience.
+Interactive static CV portfolio for GitHub Pages, focused on hardware/manufacturing engineering, aerospace and electronics workflows, applied AI, RAG evaluation, automation and traceability.
 
 ## Pages
 
