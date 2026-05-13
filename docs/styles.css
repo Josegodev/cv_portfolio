@@ -565,6 +565,29 @@ h3 {
   padding-left: 18px;
 }
 
+.timeline-visual {
+  margin: 24px 0 0;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.timeline-visual img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 52% 48%;
+  filter: saturate(1.04) contrast(1.03);
+}
+
+.timeline-visual figcaption {
+  border-top: 1px solid var(--line);
+  padding: 10px 12px;
+  color: var(--muted);
+  font: 600 11px/1.4 JetBrains Mono, monospace;
+  text-transform: uppercase;
+}
+
 .sticky-spec {
   position: sticky;
   top: calc(var(--header) + 22px);
@@ -689,6 +712,13 @@ h3 {
   text-shadow: 0 8px 32px rgba(0, 0, 0, .72);
   font: 700 clamp(30px, 5vw, 60px)/1 JetBrains Mono, monospace;
   letter-spacing: 0;
+}
+
+.aerospace-visual {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--background) 20%, transparent), color-mix(in srgb, var(--primary) 28%, transparent)),
+    url("assets/ariane-6-assembly-hangar.jpg") center / cover,
+    var(--surface-3);
 }
 
 .detail-toggle {
