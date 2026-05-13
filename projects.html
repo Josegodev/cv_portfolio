@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selected backend and applied AI projects by Jose Gonzalez Oliva.">
+  <title>Projects | Jose Gonzalez Oliva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="portfolio.js" defer></script>
+</head>
+<body data-page="projects">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">JGO</span>
+      <span><strong>Jose Gonzalez Oliva</strong><small>Projects // Systems</small></span>
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
+    <nav class="site-nav" data-site-nav>
+      <a href="index.html">Overview</a>
+      <a href="experience.html">Experience</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a href="ai-assisted-development.html">AI note</a>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="page-hero">
+      <div>
+        <p class="eyebrow">SYSTEM_ARCHITECTURE // AI_DEPLOYMENTS</p>
+        <h1>Curated projects with safe public framing.</h1>
+        <p class="lead">A public view of private or local work: advanced prototypes, backend experiments, RAG pipelines, AI interfaces, automation flows and synthetic examples. No private logs, corpora, tokens or confidential data are exposed.</p>
+      </div>
+      <img src="assets/projects-screen.png" alt="Projects gallery interface preview">
+    </section>
+
+    <section class="project-toolbar" aria-label="Project filters">
+      <button class="filter-button active" type="button" data-project-filter="all">All</button>
+      <button class="filter-button" type="button" data-project-filter="backend">Backend</button>
+      <button class="filter-button" type="button" data-project-filter="rag">RAG</button>
+      <button class="filter-button" type="button" data-project-filter="automation">Automation</button>
+      <button class="filter-button" type="button" data-project-filter="interface">Interfaces</button>
+      <input type="search" data-project-search placeholder="Search projects, tags or tools" aria-label="Search projects">
+    </section>
+
+    <section class="project-grid" data-project-grid>
+      <article class="project-card featured" id="nucleo" data-project data-tags="backend python redis gcp orchestration agents">
+        <div class="project-media system-visual" aria-hidden="true"><span>NUCLEO</span></div>
+        <div class="project-body">
+          <p class="eyebrow">CORE_SYSTEM · 2024</p>
+          <h2>NUCLEO Framework</h2>
+          <p>High-performance backend orchestration concept for multi-modal AI agents, state management and distributed task flows.</p>
+          <ul>
+            <li>Context-aware caching to reduce token waste.</li>
+            <li>Asynchronous stream handling for real-time inference patterns.</li>
+            <li>Backend design focus: reliability, visibility and controlled boundaries.</li>
+          </ul>
+          <div class="chip-row">
+            <a class="chip" href="experience.html#skills">Python</a>
+            <a class="chip" href="experience.html#skills">Redis</a>
+            <a class="chip" href="#samples">Synthetic traces</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card" id="telegram" data-project data-tags="interface fastapi webhooks bot ai telegram">
+        <p class="eyebrow">INTERFACE</p>
+        <h2>Telegram AI Orchestrator</h2>
+        <p>Asynchronous bot infrastructure for mobile-first LLM interactions, notification streams and multi-agent task coordination.</p>
+        <button class="detail-toggle" type="button" data-detail-toggle>Show technical notes</button>
+        <div class="detail-panel" hidden>
+          <p>Related emphasis: webhook routing, command parsing, observability, error handling and safe separation between user input and execution logic.</p>
+          <a href="case-studies/telegram-observability.html">Open case study</a>
+        </div>
+        <div class="chip-row"><span class="chip">FastAPI</span><span class="chip">Webhooks</span><span class="chip">Observability</span></div>
+      </article>
+
+      <article class="project-card" id="rag" data-project data-tags="rag ollama chroma vector bm25 citations evidence">
+        <p class="eyebrow">ALGORITHM</p>
+        <h2>Evidence-First RAG</h2>
+        <p>Retrieval pipeline prioritizing source credibility, citation accuracy and verifiable answers over raw speed.</p>
+        <button class="detail-toggle" type="button" data-detail-toggle>Show technical notes</button>
+        <div class="detail-panel" hidden>
+          <p>Implements hybrid retrieval thinking, feedback loops for hallucination checks and documentation-first evaluation.</p>
+          <a href="case-studies/rag-evidence-first.html">Open case study</a>
+        </div>
+        <div class="chip-row"><span class="chip">Ollama</span><span class="chip">Chroma</span><span class="chip">BM25</span></div>
+      </article>
+
+      <article class="project-card" id="automation" data-project data-tags="automation docker sqlite reporting health checks python excel">
+        <p class="eyebrow">WORKFLOW</p>
+        <h2>Operational Automation</h2>
+        <p>CI/CD-inspired pipeline thinking for internal reporting, backend health checks and repeatable operational routines.</p>
+        <div class="mini-metrics">
+          <span><b>12h</b> saved/week target</span>
+          <span><b>0%</b> manual-error goal</span>
+        </div>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">SQLite</span><span class="chip">Reports</span></div>
+      </article>
+
+      <article class="project-card" id="llm-lab" data-project data-tags="llm research pytorch huggingface benchmarks evaluation">
+        <p class="eyebrow">RESEARCH</p>
+        <h2>LLM Lab</h2>
+        <p>A benchmarking playground for comparing model behavior against technical datasets and evaluation prompts.</p>
+        <div class="system-strip">SYSTEM_BENCHMARK_ACTIVE</div>
+        <div class="chip-row"><span class="chip">PyTorch</span><span class="chip">HuggingFace</span><span class="chip">Evaluation</span></div>
+      </article>
+    </section>
+
+    <section class="split-section" id="samples">
+      <article class="panel">
+        <p class="eyebrow">SAMPLES</p>
+        <h2>Synthetic evidence, not private data</h2>
+        <p>The repository includes synthetic JSON examples for RAG evidence and trace status. They support technical review without publishing real logs, customer data, credentials or confidential corpora.</p>
+        <div class="chip-row">
+          <a class="chip" href="samples/sample-rag-evidence.json">RAG evidence JSON</a>
+          <a class="chip" href="samples/sample-trace-ok.json">Trace OK JSON</a>
+          <a class="chip" href="samples/sample-trace-error.json">Trace error JSON</a>
+        </div>
+      </article>
+      <article class="panel terminal-panel">
+        <div class="terminal-line"><span>maturity</span><b>advanced prototype / curated demo</b></div>
+        <div class="terminal-line"><span>security</span><b>no secrets, no private traces, no corpora</b></div>
+        <div class="terminal-line"><span>review</span><b>static evidence and documentation</b></div>
+        <div class="terminal-line"><span>next</span><b>production hardening, deployment proof, public benchmarks</b></div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Jose Gonzalez Oliva · SYSTEM_STATUS: OPERATIONAL</span>
+    <nav>
+      <a href="experience.html">Experience</a>
+      <a href="index.html">Overview</a>
+      <a href="https://github.com/Josegodev">GitHub</a>
+    </nav>
+  </footer>
+</body>
+</html>

@@ -1,367 +1,142 @@
-<!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>José González Oliva | Backend &amp; AI Engineer</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&amp;family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-        body {
-            background-color: #0b111a;
-            font-family: 'Geist', sans-serif;
-            color: #dde2f0;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-    </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "on-primary-fixed": "#002116",
-                    "surface-container-highest": "#2f353f",
-                    "on-error": "#690005",
-                    "error-container": "#93000a",
-                    "secondary-fixed": "#ffddb8",
-                    "on-primary-fixed-variant": "#00513a",
-                    "on-primary": "#003827",
-                    "on-error-container": "#ffdad6",
-                    "surface": "#0e141d",
-                    "on-primary-container": "#004e38",
-                    "tertiary-fixed-dim": "#bbc7dc",
-                    "on-tertiary-fixed-variant": "#3c4859",
-                    "surface-dim": "#0e141d",
-                    "surface-container": "#1a2029",
-                    "secondary": "#ffb95f",
-                    "surface-tint": "#44dfab",
-                    "outline-variant": "#3c4a43",
-                    "primary-container": "#20c997",
-                    "background": "#0e141d",
-                    "on-tertiary": "#253141",
-                    "on-background": "#dde2f0",
-                    "on-surface-variant": "#bbcac1",
-                    "on-tertiary-fixed": "#101c2c",
-                    "error": "#ffb4ab",
-                    "inverse-on-surface": "#2b313b",
-                    "primary-fixed-dim": "#44dfab",
-                    "primary-fixed": "#67fcc6",
-                    "primary": "#4de6b1",
-                    "surface-container-high": "#242a34",
-                    "inverse-surface": "#dde2f0",
-                    "secondary-container": "#ee9800",
-                    "surface-bright": "#343944",
-                    "on-secondary": "#472a00",
-                    "outline": "#85948c",
-                    "tertiary-container": "#a7b3c7",
-                    "surface-variant": "#2f353f",
-                    "inverse-primary": "#006c4f",
-                    "tertiary": "#c2cee3",
-                    "tertiary-fixed": "#d7e3f9",
-                    "on-secondary-fixed": "#2a1700",
-                    "on-secondary-container": "#5b3800",
-                    "on-tertiary-container": "#394556",
-                    "on-secondary-fixed-variant": "#653e00",
-                    "on-surface": "#dde2f0",
-                    "surface-container-low": "#161c25",
-                    "surface-container-lowest": "#080e17",
-                    "secondary-fixed-dim": "#ffb95f"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "spacing": {
-                    "gutter": "24px",
-                    "margin": "auto",
-                    "lg": "2.5rem",
-                    "sm": "1rem",
-                    "md": "1.5rem",
-                    "base": "4px",
-                    "xs": "0.5rem",
-                    "xl": "4rem"
-            },
-            "fontFamily": {
-                    "headline-lg": ["Geist"],
-                    "label-caps": ["JetBrains Mono"],
-                    "headline-lg-mobile": ["Geist"],
-                    "headline-xl": ["Geist"],
-                    "code-sm": ["JetBrains Mono"],
-                    "body-md": ["Geist"]
-            },
-            "fontSize": {
-                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
-                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
-                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "code-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
-    </script>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CV portfolio for Jose Gonzalez Oliva, Applied AI and Backend Systems Engineer.">
+  <title>Jose Gonzalez Oliva | Applied AI & Backend Systems Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="portfolio.js" defer></script>
 </head>
-<body class="selection:bg-primary-container selection:text-on-primary-container">
-<!-- Top Navigation -->
-<header class="bg-background/80 backdrop-blur-md dark:bg-background/80 border-b border-white/5 docked full-width top-0 sticky z-50">
-<nav class="flex justify-between items-center max-w-[1200px] mx-auto px-gutter py-4">
-<div class="font-headline-lg text-body-md font-bold text-on-surface dark:text-on-surface">
-                José González Oliva
-            </div>
-<div class="hidden md:flex gap-md font-body-md text-body-md">
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#projects">Projects</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#metrics">Metrics</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#stack">Stack</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#status">Status</a>
-<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200" href="#limitations">Limitations</a>
-</div>
-<a class="text-primary dark:text-primary-fixed font-bold scale-95 active:scale-90 transition-transform font-body-md text-body-md" href="https://github.com/Josegodev">Contact</a>
-</nav>
-</header>
-<main class="max-w-[1200px] mx-auto px-gutter">
-<!-- Hero Section -->
-<section class="py-xl flex flex-col items-start gap-md">
-<div class="flex flex-col gap-xs">
-<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Backend &amp; AI Engineer</span>
-<h1 class="font-headline-xl text-headline-xl text-on-surface">José González Oliva</h1>
-<p class="font-body-md text-headline-lg text-on-surface-variant max-w-2xl leading-relaxed">
-                    Traceable, reproducible and operable AI backends HARNESS
-                </p>
-<div class="flex flex-wrap gap-xs mt-xs text-on-surface-variant font-code-sm text-code-sm">
-<span class="px-xs py-[2px] bg-surface-container border border-white/5">FastAPI</span>
-<span class="px-xs py-[2px] bg-surface-container border border-white/5">RAG</span>
-<span class="px-xs py-[2px] bg-surface-container border border-white/5">LLMOps</span>
-<span class="px-xs py-[2px] bg-surface-container border border-white/5">Observability</span>
-<span class="px-xs py-[2px] bg-surface-container border border-white/5">Automation</span>
-</div>
-</div>
-<div class="flex gap-sm">
-<a class="bg-primary text-on-primary-fixed px-md py-sm font-bold text-body-md rounded-none hover:brightness-110 transition-all scale-95 active:scale-90" href="#projects">
-                    View projects
-                </a>
-<a class="border border-primary text-primary px-md py-sm font-bold text-body-md rounded-none hover:bg-primary/10 transition-all scale-95 active:scale-90" href="#stack">
-                    Technical terms
-                </a>
-</div>
-</section>
-<!-- Architecture Comparison: Bento Grid Style -->
-<section class="py-xl border-t border-white/5" id="architecture">
-<div class="mb-lg">
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Architecture Comparison</h2>
-<p class="font-body-md text-on-surface-variant max-w-3xl">Strategic approaches to structuring AI systems based on operational complexity and control requirements.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<!-- Cloud -->
-<div class="bg-surface-container p-md border border-white/5 hover:border-primary/20 transition-all group">
-<div class="flex items-center gap-sm mb-md">
-<span class="material-symbols-outlined text-primary text-3xl">cloud</span>
-<h3 class="font-headline-lg text-[24px] text-on-surface">Cloud</h3>
-</div>
-<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Managed services, APIs and agents in the cloud. Faster deployment but higher dependency on external pricing and limited internal control.</p>
-<div class="pt-md border-t border-white/5">
-<div class="text-label-caps text-secondary font-code-sm mb-xs">STRATEGY</div>
-<div class="text-on-surface font-body-md">Prioritize managed services and speed.</div>
-</div>
-</div>
-<!-- OpenClaw -->
-<div class="bg-surface-container p-md border border-white/5 hover:border-primary/20 transition-all">
-<div class="flex items-center gap-sm mb-md">
-<span class="material-symbols-outlined text-primary text-3xl">hub</span>
-<h3 class="font-headline-lg text-[24px] text-on-surface">OpenClaw</h3>
-</div>
-<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Agent-oriented architecture with routing, plugins and background workflows. Persistent daemon connected to apps and sessions.</p>
-<div class="pt-md border-t border-white/5">
-<div class="text-label-caps text-secondary font-code-sm mb-xs">STRATEGY</div>
-<div class="text-on-surface font-body-md">Focus on multi-agent workflow complexity.</div>
-</div>
-</div>
-<!-- NUCLEO -->
-<div class="bg-surface-container p-md border border-primary/30 relative overflow-hidden group">
-<div class="absolute top-0 right-0 bg-primary px-sm py-[2px] font-label-caps text-[10px] text-on-primary-fixed">CORE SYSTEM</div>
-<div class="flex items-center gap-sm mb-md">
-<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">security</span>
-<h3 class="font-headline-lg text-[24px] text-on-surface">NUCLEO</h3>
-</div>
-<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">Controlled execution focus. Built-in runtime, decoupled from the model. Explicit boundaries for tools, contracts, and RAG evidence.</p>
-<div class="pt-md border-t border-white/5">
-<div class="text-label-caps text-secondary font-code-sm mb-xs">STRATEGY</div>
-<div class="text-on-surface font-body-md">Localized, auditable, and traceable.</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Projects -->
-<section class="py-xl" id="projects">
-<div class="mb-lg">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Main projects</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<!-- Project 1 -->
-<div class="group relative bg-surface-container-lowest border border-white/5 p-gutter hover:bg-surface-container transition-colors">
-<h3 class="font-headline-lg text-[20px] text-on-surface mb-sm">Controlled local AI runtime</h3>
-<p class="font-body-md text-on-surface-variant mb-lg">FastAPI backend with explicit request/response contracts, bot/backend services, and per-execution traceability.</p>
-<div class="flex flex-wrap gap-xs mb-lg">
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">FastAPI</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Runtime</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Tracing</span>
-</div>
-<a class="font-label-caps text-secondary flex items-center gap-xs group-hover:gap-sm transition-all" href="case-studies/nucleo-runtime.html">Read case study <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-</div>
-<!-- Project 2 -->
-<div class="group relative bg-surface-container-lowest border border-white/5 p-gutter hover:bg-surface-container transition-colors">
-<h3 class="font-headline-lg text-[20px] text-on-surface mb-sm">Evidence-first document RAG</h3>
-<p class="font-body-md text-on-surface-variant mb-lg">A RAG flow that checks whether evidence exists before asking the model to answer, with explicit EVIDENCE_FOUND states.</p>
-<div class="flex flex-wrap gap-xs mb-lg">
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">RAG</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Evidence</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Documents</span>
-</div>
-<a class="font-label-caps text-secondary flex items-center gap-xs group-hover:gap-sm transition-all" href="case-studies/rag-evidence-first.html">Read case study <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-</div>
-<!-- Project 3 -->
-<div class="group relative bg-surface-container-lowest border border-white/5 p-gutter hover:bg-surface-container transition-colors">
-<h3 class="font-headline-lg text-[20px] text-on-surface mb-sm">Telegram + observability</h3>
-<p class="font-body-md text-on-surface-variant mb-lg">Secondary operational channel for testing the backend, with JSONL traces, token metrics, and latency/error status.</p>
-<div class="flex flex-wrap gap-xs mb-lg">
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Telegram</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">JSONL</span>
-<span class="font-code-sm text-code-sm text-primary px-xs py-1 border border-primary/20">Metrics</span>
-</div>
-<a class="font-label-caps text-secondary flex items-center gap-xs group-hover:gap-sm transition-all" href="case-studies/telegram-observability.html">Read case study <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-</div>
-</div>
-</section>
-<!-- Execution Metrics: Code Dashboard -->
-<section class="py-xl" id="metrics">
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Execution metrics</h2>
-<p class="font-body-md text-on-surface-variant mb-md leading-relaxed">
-                        Every AI execution should leave an inspection record. The example below is synthetic and shows how the backend can record model, retrieval status, tokens, latency and result status.
-                    </p>
-<div class="flex gap-md">
-<div class="flex flex-col">
-<span class="text-primary font-headline-lg">1730ms</span>
-<span class="text-on-surface-variant font-label-caps">Latency</span>
-</div>
-<div class="flex flex-col">
-<span class="text-secondary font-headline-lg">19.4</span>
-<span class="text-on-surface-variant font-label-caps">Tokens/sec</span>
-</div>
-</div>
-</div>
-<div class="bg-[#080e17] p-md border border-white/5 relative group">
-<div class="absolute top-4 right-4 text-white/20 font-label-caps text-[10px]">JSONL_DEBUG_LOG</div>
-<pre class="font-code-sm text-code-sm overflow-x-auto text-[#4de6b1]">{
-  "trace_id": "trc_public_demo_ok_001",
-  "source": "telegram",
-  "provider": "ollama",
-  "model": "local-model-demo",
-  "retrieval_status": "evidence_found",
-  "tokens_input": 1210,
-  "tokens_output": 286,
-  "latency_ms": 1730,
-  "output_tokens_per_second": 19.4,
-  "status": "ok"
-}</pre>
-</div>
-</div>
-</section>
-<!-- Technical Stack -->
-<section class="py-xl border-t border-white/5" id="stack">
-<div class="mb-lg">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Technical stack</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-md">
-<!-- Backend -->
-<div class="p-md bg-surface border border-white/5 hover:bg-surface-container-low transition-all">
-<div class="flex items-center gap-sm mb-sm">
-<span class="material-symbols-outlined text-primary">terminal</span>
-<h4 class="font-label-caps text-on-surface">Backend</h4>
-</div>
-<p class="font-body-md text-on-surface-variant">Python, FastAPI, HTTP contracts, payload validation, layered services and local APIs.</p>
-</div>
-<!-- AI / LLM -->
-<div class="p-md bg-surface border border-white/5 hover:bg-surface-container-low transition-all">
-<div class="flex items-center gap-sm mb-sm">
-<span class="material-symbols-outlined text-primary">neurology</span>
-<h4 class="font-label-caps text-on-surface">AI / LLM</h4>
-</div>
-<p class="font-body-md text-on-surface-variant">Document RAG, local models, provider adapters, prompt policies and model output checks.</p>
-</div>
-<!-- Data -->
-<div class="p-md bg-surface border border-white/5 hover:bg-surface-container-low transition-all">
-<div class="flex items-center gap-sm mb-sm">
-<span class="material-symbols-outlined text-primary">database</span>
-<h4 class="font-label-caps text-on-surface">Data</h4>
-</div>
-<p class="font-body-md text-on-surface-variant">JSON contracts, synthetic traces, retrieval metadata, document chunks and auditable response records.</p>
-</div>
-<!-- Operations -->
-<div class="p-md bg-surface border border-white/5 hover:bg-surface-container-low transition-all">
-<div class="flex items-center gap-sm mb-sm">
-<span class="material-symbols-outlined text-primary">monitoring</span>
-<h4 class="font-label-caps text-on-surface">Operations</h4>
-</div>
-<p class="font-body-md text-on-surface-variant">Latency, token counts, error states, JSON/JSONL logs and deterministic evals for drift detection.</p>
-</div>
-<!-- Integrations -->
-<div class="p-md bg-surface border border-white/5 hover:bg-surface-container-low transition-all">
-<div class="flex items-center gap-sm mb-sm">
-<span class="material-symbols-outlined text-primary">lan</span>
-<h4 class="font-label-caps text-on-surface">Integrations</h4>
-</div>
-<p class="font-body-md text-on-surface-variant">Static web pages, Telegram bots and backend APIs used to test AI flows through real channels.</p>
-</div>
-</div>
-</section>
-<!-- Current Status & Limitations -->
-<section class="py-xl mb-xl" id="limitations">
-<div class="bg-surface-container-low p-gutter border-l-4 border-secondary">
-<h3 class="font-headline-lg text-[24px] text-on-surface mb-md" id="status">Current limitations</h3>
-<ul class="space-y-sm">
-<li class="flex items-start gap-sm font-body-md text-on-surface-variant">
-<span class="material-symbols-outlined text-secondary text-sm pt-1">warning</span>
-                        Advanced prototype; not a production system.
-                    </li>
-<li class="flex items-start gap-sm font-body-md text-on-surface-variant">
-<span class="material-symbols-outlined text-secondary text-sm pt-1">warning</span>
-                        Local experimental backend, not a deployment-ready platform yet.
-                    </li>
-<li class="flex items-start gap-sm font-body-md text-on-surface-variant">
-<span class="material-symbols-outlined text-secondary text-sm pt-1">warning</span>
-                        Observability is local and JSON-based, not centralized production monitoring.
-                    </li>
-<li class="flex items-start gap-sm font-body-md text-on-surface-variant">
-<span class="material-symbols-outlined text-secondary text-sm pt-1">warning</span>
-                        No public validation for high concurrency.
-                    </li>
-</ul>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-white/5">
-<div class="flex flex-col md:flex-row justify-between items-center max-w-[1200px] mx-auto px-gutter py-xl">
-<div class="flex flex-col items-center md:items-start gap-xs mb-md md:mb-0">
-<div class="font-label-caps text-label-caps text-on-surface-variant uppercase">José González Oliva</div>
-<p class="font-code-sm text-code-sm text-on-surface-variant text-center md:text-left max-w-sm">
-                    Static GitHub Pages portfolio. No dependencies and no sensitive data. AI-assisted development.
-                </p>
-</div>
-<div class="flex gap-md font-code-sm text-code-sm text-secondary dark:text-secondary-fixed">
-<a class="hover:text-secondary opacity-80 hover:opacity-100 transition-opacity" href="https://github.com/Josegodev">GitHub</a>
-<a class="hover:text-secondary opacity-80 hover:opacity-100 transition-opacity" href="ai-assisted-development.html">AI note</a>
-<a class="hover:text-secondary opacity-80 hover:opacity-100 transition-opacity" href="https://github.com/Josegodev/josegodev.github.io">Source</a>
-</div>
-</div>
-</footer>
-</body></html>
+<body data-page="overview">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Go to overview">
+      <span class="brand-mark">JGO</span>
+      <span>
+        <strong>Jose Gonzalez Oliva</strong>
+        <small>Applied AI // Backend Systems</small>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-label="Open navigation">Menu</button>
+    <nav class="site-nav" data-site-nav>
+      <a class="active" href="index.html">Overview</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="ai-assisted-development.html">AI note</a>
+      <button class="icon-button" type="button" data-theme-toggle aria-label="Toggle theme">◐</button>
+    </nav>
+  </header>
+
+  <main id="content">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">SYSTEM_INIT: CV_PORTFOLIO_READY</p>
+        <h1>Applied AI & Backend Systems Engineer</h1>
+        <p class="lead">I build reliable backend foundations for AI workflows: RAG evaluation, controlled execution boundaries, automation, observability and traceable technical decision-making.</p>
+        <div class="hero-actions" aria-label="Primary navigation">
+          <a class="button primary" href="projects.html#nucleo">Explore projects</a>
+          <a class="button" href="experience.html#timeline">View experience</a>
+        </div>
+      </div>
+      <figure class="hero-visual">
+        <img src="assets/overview-screen.png" alt="Technical portfolio overview interface preview">
+        <figcaption>Interactive CV map: profile, technical focus and selected systems.</figcaption>
+      </figure>
+    </section>
+
+    <section class="metric-strip" aria-label="Engineering focus metrics">
+      <article>
+        <span>Reliability</span>
+        <strong>99.9% SLO mindset</strong>
+        <div class="bar"><i style="width:99%"></i></div>
+        <p>Fault-tolerant thinking for backend services supporting AI workloads.</p>
+      </article>
+      <article>
+        <span>Traceability</span>
+        <strong>Evidence-first</strong>
+        <div class="bar segmented"><i></i><i></i><i></i><i class="muted"></i></div>
+        <p>Decision logs, synthetic traces and verifiable documentation flows.</p>
+      </article>
+      <article>
+        <span>Decision quality</span>
+        <strong>High fidelity</strong>
+        <div class="bar"><i style="width:82%"></i></div>
+        <p>Evaluation-oriented work for reducing hallucinations and ambiguity.</p>
+      </article>
+    </section>
+
+    <section class="section-grid">
+      <div class="section-intro">
+        <p class="eyebrow">TECHNICAL FOCUS</p>
+        <h2>Navigate by related topic</h2>
+        <p>Use these topic chips as a map. They jump between pages and anchor the CV around the same engineering themes.</p>
+      </div>
+      <div class="topic-grid" data-topic-map>
+        <a href="experience.html#automation" data-topic="automation"><span>01</span> Operational automation</a>
+        <a href="projects.html#rag" data-topic="rag"><span>02</span> Evidence-first RAG</a>
+        <a href="projects.html#nucleo" data-topic="backend"><span>03</span> Backend orchestration</a>
+        <a href="experience.html#traceability" data-topic="traceability"><span>04</span> Documentation & traceability</a>
+        <a href="projects.html#telegram" data-topic="interfaces"><span>05</span> AI interfaces</a>
+        <a href="experience.html#skills" data-topic="skills"><span>06</span> Technical stack</a>
+      </div>
+    </section>
+
+    <section class="split-section">
+      <article class="panel">
+        <p class="eyebrow">PROFILE</p>
+        <h2>Engineering profile</h2>
+        <p>Backend and AI-oriented engineer with industrial, aerospace and manufacturing experience. The portfolio frames private or local work as curated public evidence: static demos, safe synthetic examples and transparent limitations.</p>
+        <div class="chip-row">
+          <a class="chip" href="projects.html#samples">Synthetic traces</a>
+          <a class="chip" href="experience.html#timeline">Industrial history</a>
+          <a class="chip" href="ai-assisted-development.html">AI-assisted disclosure</a>
+        </div>
+      </article>
+      <article class="panel terminal-panel" aria-label="System summary">
+        <div class="terminal-line"><span>role</span><b>Applied AI & Backend Systems Engineer</b></div>
+        <div class="terminal-line"><span>core</span><b>Python · FastAPI · Java · Spring Boot · PostgreSQL</b></div>
+        <div class="terminal-line"><span>ai</span><b>RAG · LLM evaluation · Vector databases · Ollama</b></div>
+        <div class="terminal-line"><span>domain</span><b>Aerospace · Manufacturing · Process engineering</b></div>
+        <div class="terminal-line"><span>status</span><b>Open to backend / applied AI roles</b></div>
+      </article>
+    </section>
+
+    <section class="cards-section">
+      <div class="section-heading">
+        <p class="eyebrow">FAST PATH</p>
+        <h2>Three-page CV structure</h2>
+      </div>
+      <div class="card-grid three">
+        <a class="feature-card" href="index.html">
+          <span class="card-index">01</span>
+          <h3>Overview</h3>
+          <p>Positioning, focus areas and a topic-based map for recruiters and technical reviewers.</p>
+        </a>
+        <a class="feature-card" href="experience.html">
+          <span class="card-index">02</span>
+          <h3>Experience</h3>
+          <p>Professional timeline, education, skills and the bridge between industrial systems and software practice.</p>
+        </a>
+        <a class="feature-card" href="projects.html">
+          <span class="card-index">03</span>
+          <h3>Projects</h3>
+          <p>NUCLEO, Evidence-First RAG, Telegram AI Orchestrator, automation and LLM Lab.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Jose Gonzalez Oliva · SYSTEM_STATUS: OPERATIONAL</span>
+    <nav>
+      <a href="https://github.com/Josegodev">GitHub</a>
+      <a href="projects.html">Portfolio</a>
+      <a href="ai-assisted-development.html">AI note</a>
+    </nav>
+  </footer>
+</body>
+</html>

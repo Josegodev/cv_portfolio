@@ -1,50 +1,29 @@
-# AI Portfolio - José González Oliva
+# CV Portfolio - Jose Gonzalez Oliva
 
-Static technical portfolio for GitHub Pages, aimed at recruiters and technical reviewers evaluating Backend & AI Engineering work around FastAPI, RAG, LLM providers, Telegram integration, JSON traces, evaluation and operational observability.
+Interactive static CV portfolio for GitHub Pages, focused on Applied AI, Backend Systems, RAG evaluation, automation, traceability and industrial engineering experience.
 
-This repository is a public, curated and safe view of work developed in private or local repositories and labs. It does not publish private source code, real document corpora, real logs, tokens, private IPs, local paths, credentials or confidential documentation.
+## Pages
 
-The site is static. It uses only HTML, CSS and synthetic JSON examples. There is no React, Astro, Vite, npm, build step or external dependency.
+- `index.html`: overview, profile and topic map.
+- `experience.html`: professional timeline, skills and education.
+- `projects.html`: project gallery with filters, internal anchors and expandable notes.
+- `ai-assisted-development.html`: transparent note about AI-assisted development.
+
+The same public pages are mirrored in `/docs` so GitHub Pages can be served from either the repository root or the `/docs` folder.
 
 ## GitHub Pages
 
-This repository is intended to be served as the user site `josegodev.github.io`.
+Recommended setup:
 
-Recommended GitHub Pages setup:
-
-1. Open the repository settings in GitHub.
+1. Open repository settings in GitHub.
 2. Go to `Pages`.
-3. In `Build and deployment`, choose `Deploy from a branch`.
+3. Choose `Deploy from a branch`.
 4. Select branch `main`.
-5. Select folder `/root`.
+5. Select folder `/root` or `/docs`.
 6. Save.
 
-GitHub Pages will serve `index.html` from the repository root.
+## Safety
 
-## Content
+This repository is a curated public view. It should not publish private logs, real traces, corpora, credentials, tokens, private IPs, local paths, customer data or confidential documentation.
 
-- `index.html`: main portfolio page.
-- `styles.css`: shared static styles.
-- `case-studies/`: technical case studies.
-- `ai-assisted-development.html`: transparency note about AI-assisted development.
-- `samples/`: synthetic JSON examples.
-- `docs/`: synchronized copy kept for compatibility if GitHub Pages is ever configured from `/docs`.
-
-## Editing
-
-- Edit root files first because the public site is served from root.
-- Keep `/docs` synchronized only if it remains in the repository.
-- Keep examples synthetic.
-- Do not publish private logs, real traces, corpora, SQLite files, tokens, credentials, local paths, private IPs, customer data or confidential documentation.
-
-## Maturity framing
-
-The portfolio intentionally presents the work as:
-
-- advanced prototype
-- local experimental backend
-- curated demo
-- not production-ready
-- not deployment-ready yet
-
-Do not add claims about production cloud operation, enterprise security or high-concurrency readiness unless there is public, reproducible evidence.
+The included JSON examples are synthetic.
