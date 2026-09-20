@@ -1,0 +1,188 @@
+---
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getLocalizedProjects } from "../data/projects-localized";
+import { getLocalizedSiteData } from "../data/site-localized";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getUi(locale);
+const { site, skillGroups, education } = getLocalizedSiteData(locale);
+const projects = getLocalizedProjects(locale);
+const featuredProjects = projects.filter((project) => project.featured);
+---
+
+<BaseLayout locale={locale} routePath="/">
+  <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow"><span>01</span> {copy.home.profileEyebrow}</p>
+      <h1 id="hero-title">
+        {copy.home.heroBefore}{" "}<em>{copy.home.heroEmphasis}</em>{" "}{copy.home.heroAfter}
+      </h1>
+      <p class="hero-lead">{site.description} {copy.home.heroSuffix}</p>
+      <div class="hero-actions" aria-label={copy.home.primaryActions}>
+        <a class="button primary" href="#projects">{copy.home.viewProjects}</a>
+        <a class="button" href="#experience">{copy.home.experience}</a>
+        <a class="button quiet" href={localizedPath(locale, "/cv/")}>{copy.home.downloadCv}</a>
+      </div>
+      <div class="hero-links" aria-label={copy.home.professionalProfiles}>
+        <a href={site.github}>GitHub <span aria-hidden="true">↗</span></a>
+        <a href={site.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <div class="hero-schematic" data-hero-visual data-reveal aria-label={copy.home.diagramLabel}>
+      <div class="schematic-header">
+        <span>{copy.home.liveSystemMap}</span>
+        <b>JGO · 2026</b>
+      </div>
+      <div class="schematic-flow" aria-hidden="true">
+        <div class="schematic-node node-input">
+          <span>01</span><strong>{copy.home.field}</strong><small>{copy.home.fieldDetail}</small>
+        </div>
+        <div class="schematic-line line-a"></div>
+        <div class="schematic-node node-process">
+          <span>02</span><strong>{copy.home.automate}</strong><small>{copy.home.automateDetail}</small>
+        </div>
+        <div class="schematic-line line-b"></div>
+        <div class="schematic-node node-output">
+          <span>03</span><strong>{copy.home.decide}</strong><small>{copy.home.decideDetail}</small>
+        </div>
+        <div class="schematic-pulse"></div>
+      </div>
+      <div class="schematic-footer">
+        <span>{copy.home.industrialData}</span><i></i>
+        <span>{copy.home.automation}</span><i></i>
+        <span>{copy.home.appliedAi}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-strip" aria-label={copy.home.profileFocus}>
+    <div><span>{copy.home.foundation}</span><strong>{copy.home.foundationValue}</strong></div>
+    <div><span>{copy.home.operatingContext}</span><strong>{copy.home.operatingContextValue}</strong></div>
+    <div><span>{copy.home.leverage}</span><strong>{copy.home.leverageValue}</strong></div>
+  </section>
+
+  <section class="section-shell section-grid" id="about" data-section="about">
+    <header class="section-heading" data-reveal>
+      <p class="eyebrow"><span>02</span> {copy.home.about}</p>
+      <h2>{copy.home.aboutTitle}</h2>
+    </header>
+    <div class="about-copy" data-reveal>
+      <p class="large-copy">{copy.home.aboutLead}</p>
+      <div class="about-columns">
+        <p>{copy.home.aboutBodyOne}</p>
+        <p>{copy.home.aboutBodyTwo}</p>
+      </div>
+      <div class="principles" aria-label={copy.home.principlesLabel}>
+        <span>01 · {copy.home.principleOne}</span>
+        <span>02 · {copy.home.principleTwo}</span>
+        <span>03 · {copy.home.principleThree}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="experience" data-section="experience">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>03</span> {copy.nav.experience}</p>
+        <h2>{copy.home.experienceTitle}</h2>
+      </div>
+      <p>{copy.home.experienceIntro}</p>
+    </header>
+    <figure class="experience-visual" data-reveal>
+      <img
+        src={withBase("/assets/ariane-6-assembly-hangar.jpg")}
+        alt={copy.home.experienceImageAlt}
+        width="1600"
+        height="893"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>{copy.home.experienceImageCaption}</figcaption>
+    </figure>
+    <div data-reveal><ExperienceTimeline locale={locale} /></div>
+  </section>
+
+  <section class="section-shell" id="projects" data-section="projects">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>04</span> {copy.home.selectedProjects}</p>
+        <h2>{copy.home.projectsTitle}</h2>
+      </div>
+      <p>{copy.home.projectsIntro}</p>
+    </header>
+    <div class="project-grid">
+      {featuredProjects.map((project, index) => (
+        <div data-reveal style={`--reveal-delay: ${Math.min(index, 3) * 70}ms`}>
+          <ProjectCard project={project} locale={locale} />
+        </div>
+      ))}
+    </div>
+    <details class="more-projects" data-reveal>
+      <summary>{copy.home.moreProjects}</summary>
+      <div class="project-grid secondary-projects">
+        {projects.filter((project) => !project.featured).map((project) => (
+          <ProjectCard project={project} locale={locale} featured={false} />
+        ))}
+      </div>
+    </details>
+  </section>
+
+  <section class="section-shell" id="stack" data-section="stack">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>05</span> {copy.home.workingStack}</p>
+        <h2>{copy.home.stackTitle}</h2>
+      </div>
+      <p>{copy.home.stackIntro}</p>
+    </header>
+    <div class="stack-grid">
+      {skillGroups.map((group, index) => (
+        <article data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+          <span class="stack-index">{String(index + 1).padStart(2, "0")}</span>
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+          <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell" id="education" data-section="education">
+    <header class="section-heading" data-reveal>
+      <p class="eyebrow"><span>06</span> {copy.home.education}</p>
+      <h2>{copy.home.educationTitle}</h2>
+    </header>
+    <div class="education-grid">
+      {education.map((item, index) => (
+        <article data-reveal style={`--reveal-delay: ${index * 60}ms`}>
+          <span>{String(index + 1).padStart(2, "0")} / {item.location}</span>
+          <h3>{item.qualification}</h3>
+          <p>{item.focus}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="contact-section section-shell" id="contact" data-section="contact">
+    <div data-reveal>
+      <p class="eyebrow"><span>07</span> {copy.home.contact}</p>
+      <h2>{copy.home.contactTitle}</h2>
+    </div>
+    <div class="contact-actions" data-reveal>
+      <p>{copy.home.contactIntro}</p>
+      <a class="button primary" href={site.linkedin}>{copy.home.connectLinkedIn}</a>
+      <a class="button" href={site.github}>{copy.home.reviewGitHub}</a>
+    </div>
+  </section>
+</BaseLayout>
+

@@ -1,20 +1,27 @@
 ---
 import { site } from "../data/site";
-import { withBase } from "../utils/paths";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getUi(locale);
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div>
-    <a class="footer-name" href={withBase()}>{site.name}</a>
-    <p>Engineering · Automation · AI</p>
+    <a class="footer-name" href={localizedPath(locale)}>{site.name}</a>
+    <p>{copy.meta.brandLine}</p>
   </div>
-  <nav aria-label="Footer navigation">
+  <nav aria-label={copy.common.footerNavigation}>
     <a href={site.github} rel="me">GitHub</a>
     <a href={site.linkedin} rel="me">LinkedIn</a>
-    <a href={withBase("/ai-assisted-development/")}>AI-assisted development</a>
-    <a href={site.repository}>Source</a>
+    <a href={localizedPath(locale, "/ai-assisted-development/")}>{copy.common.assistedDevelopment}</a>
+    <a href={site.repository}>{copy.common.source}</a>
   </nav>
-  <p class="footer-meta">© {year} · Built as a static, privacy-conscious portfolio.</p>
+  <p class="footer-meta">© {year} · {copy.common.builtPrivacy}</p>
 </footer>

@@ -1,0 +1,47 @@
+---
+import { site } from "../data/site";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getUi(locale);
+---
+
+<BaseLayout
+  title={`${copy.ai.title} | ${site.name}`}
+  description={copy.ai.description}
+  locale={locale}
+  routePath="/ai-assisted-development/"
+>
+  <article class="simple-page section-shell">
+    <a class="back-link" href={localizedPath(locale)}><span aria-hidden="true">←</span> {copy.common.portfolio}</a>
+    <header data-reveal>
+      <p class="eyebrow"><span>{copy.ai.transparency}</span> {copy.ai.eyebrow}</p>
+      <h1>{copy.ai.heading}</h1>
+      <p class="project-intro">{copy.ai.intro}</p>
+    </header>
+    <div class="disclosure-grid">
+      <section data-reveal>
+        <span>01</span>
+        <h2>{copy.ai.helpedTitle}</h2>
+        <p>{copy.ai.helpedText}</p>
+      </section>
+      <section data-reveal>
+        <span>02</span>
+        <h2>{copy.ai.humanTitle}</h2>
+        <p>{copy.ai.humanText}</p>
+      </section>
+      <section data-reveal>
+        <span>03</span>
+        <h2>{copy.ai.boundaryTitle}</h2>
+        <p>{copy.ai.boundaryText}</p>
+      </section>
+    </div>
+  </article>
+</BaseLayout>
+

@@ -1,0 +1,17 @@
+---
+import { translatedLocales, type Locale } from "../../i18n/config";
+import HomeView from "../../views/HomeView.astro";
+
+export function getStaticPaths() {
+  return translatedLocales.map((lang) => ({ params: { lang }, props: { locale: lang } }));
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<HomeView locale={locale} />
+

@@ -25,7 +25,11 @@ function applyTheme(theme: Theme): void {
   }
 
   document.querySelectorAll<HTMLElement>("[data-theme-label]").forEach((label) => {
-    label.textContent = `${theme.charAt(0).toUpperCase()}${theme.slice(1)}`;
+    label.textContent = theme === "dark"
+      ? label.dataset.themeDark ?? "Dark"
+      : theme === "light"
+        ? label.dataset.themeLight ?? "Light"
+        : label.dataset.themeSystem ?? "System";
   });
 }
 
@@ -55,7 +59,12 @@ function setupPage(): void {
   function setNavigation(open: boolean): void {
     document.body.classList.toggle("nav-open", open);
     navToggle?.setAttribute("aria-expanded", String(open));
-    navToggle?.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    navToggle?.setAttribute(
+      "aria-label",
+      open
+        ? navToggle.dataset.closeLabel ?? "Close navigation"
+        : navToggle.dataset.openLabel ?? "Open navigation",
+    );
   }
 
   navToggle?.addEventListener(
@@ -75,6 +84,16 @@ function setupPage(): void {
     },
     { signal },
   );
+
+  document.querySelectorAll<HTMLSelectElement>("[data-language-select]").forEach((select) => {
+    select.addEventListener(
+      "change",
+      () => {
+        if (select.value) window.location.assign(select.value);
+      },
+      { signal },
+    );
+  });
 
   const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-section]"));
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));

@@ -1,0 +1,90 @@
+---
+import { getLocalizedSiteData } from "../data/site-localized";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const copy = getUi(locale);
+const { education, experiences, site, skillGroups } = getLocalizedSiteData(locale);
+---
+
+<BaseLayout
+  title={`CV | ${site.name}`}
+  description={copy.cv.description}
+  pageType="profile"
+  bodyClass="cv-page"
+  locale={locale}
+  routePath="/cv/"
+>
+  <article class="cv-document section-shell">
+    <header class="cv-header">
+      <div>
+        <a class="back-link no-print" href={localizedPath(locale)}><span aria-hidden="true">←</span> {copy.common.portfolio}</a>
+        <h1>{site.name}</h1>
+        <p>{site.role}</p>
+      </div>
+      <div class="cv-contact">
+        <span>{site.location}</span>
+        <a href={site.linkedin}>LinkedIn</a>
+        <a href={site.github}>GitHub</a>
+        <button class="button primary no-print" type="button" data-print-cv>{copy.cv.print}</button>
+      </div>
+    </header>
+
+    <section class="cv-summary">
+      <h2>{copy.cv.profile}</h2>
+      <p>{copy.cv.profileText}</p>
+    </section>
+
+    <section>
+      <h2>{copy.cv.experience}</h2>
+      <div class="cv-experience">
+        {experiences.map((experience) => (
+          <article>
+            <div>
+              <span>{experience.period}</span>
+              <strong>{experience.company}{experience.client ? ` / ${experience.client}` : ""}</strong>
+            </div>
+            <div>
+              <h3>{experience.role}</h3>
+              <p>{experience.location} · {experience.sector}</p>
+              <ul>{experience.impact.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>{copy.cv.technicalStack}</h2>
+      <div class="cv-skills">
+        {skillGroups.map((group) => (
+          <div><strong>{group.title}</strong><span>{group.items.join(" · ")}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>{copy.cv.education}</h2>
+      <div class="cv-education">
+        {education.map((item) => (
+          <div><strong>{item.qualification}</strong><span>{item.location} · {item.focus}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <p class="cv-note">{copy.cv.privacyNote}</p>
+  </article>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      document.querySelector("[data-print-cv]")?.addEventListener("click", () => window.print(), { once: true });
+    });
+  </script>
+</BaseLayout>
+

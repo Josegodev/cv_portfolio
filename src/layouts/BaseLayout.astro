@@ -3,6 +3,8 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import { site } from "../data/site";
+import { locales, localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
 import { withBase } from "../utils/paths";
 import "../styles/global.css";
 
@@ -13,16 +15,24 @@ interface Props {
   pageType?: "website" | "article" | "profile";
   schema?: Record<string, unknown> | Record<string, unknown>[];
   bodyClass?: string;
+  locale?: Locale;
+  routePath?: string;
 }
 
 const {
-  title = `${site.name} | Engineering, Automation & AI`,
-  description = site.description,
+  locale = "en",
+  routePath = "/",
+  title,
+  description,
   image = "/assets/hardware-manufacturing-pcb-styled.jpg",
   pageType = "website",
   schema,
   bodyClass = "",
 } = Astro.props;
+
+const copy = getUi(locale);
+const pageTitle = title ?? copy.meta.title;
+const pageDescription = description ?? copy.meta.description;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(withBase(image), Astro.site);
@@ -32,22 +42,16 @@ const defaultSchema = [
     "@type": "Person",
     name: site.name,
     url: new URL(withBase(), Astro.site).href,
-    jobTitle: "Engineer working across industrial operations, automation and applied AI",
+    jobTitle: copy.meta.jobTitle,
     sameAs: [site.github, site.linkedin],
-    knowsAbout: [
-      "Industrial operations",
-      "Manufacturing engineering",
-      "Automation",
-      "Python",
-      "Applied artificial intelligence",
-    ],
+    knowsAbout: copy.meta.knowsAbout,
   },
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: `${site.name} Portfolio`,
     url: new URL(withBase(), Astro.site).href,
-    description: site.description,
+    description: pageDescription,
   },
 ];
 
@@ -55,33 +59,41 @@ const schemaValue = schema ?? defaultSchema;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="system">
+<html lang={locale} data-theme="system">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <meta name="description" content={pageDescription} />
     <meta name="theme-color" content="#0b1118" />
     <link rel="canonical" href={canonical} />
+    {locales.map((alternateLocale) => (
+      <link
+        rel="alternate"
+        hreflang={alternateLocale}
+        href={new URL(localizedPath(alternateLocale, routePath), Astro.site)}
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(localizedPath("en", routePath), Astro.site)} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <link rel="manifest" href={withBase("/site.webmanifest")} />
     <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
 
     <meta property="og:type" content={pageType} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
-    <meta property="og:image:alt" content="Engineering, industrial operations, automation and applied AI portfolio" />
+    <meta property="og:image:alt" content={copy.meta.socialImageAlt} />
     <meta property="og:site_name" content={`${site.name} Portfolio`} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={socialImage} />
-    <meta name="twitter:image:alt" content="Engineering, industrial operations, automation and applied AI portfolio" />
+    <meta name="twitter:image:alt" content={copy.meta.socialImageAlt} />
 
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schemaValue)} />
     <script is:inline>
       (() => {
@@ -97,12 +109,12 @@ const schemaValue = schema ?? defaultSchema;
     <ClientRouter fallback="swap" />
   </head>
   <body class={bodyClass}>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <Header />
+    <a class="skip-link" href="#main-content">{copy.common.skipToContent}</a>
+    <Header locale={locale} routePath={routePath} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
     <script>
       import "../scripts/site";
     </script>

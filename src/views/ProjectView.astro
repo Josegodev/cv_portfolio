@@ -1,0 +1,136 @@
+---
+import ArchitectureDiagram from "../components/ArchitectureDiagram.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getLocalizedProjects } from "../data/projects-localized";
+import type { Project } from "../data/projects";
+import { site } from "../data/site";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+interface Props {
+  locale: Locale;
+  project: Project;
+}
+
+const { locale, project } = Astro.props;
+const copy = getUi(locale);
+const projects = getLocalizedProjects(locale);
+const related = projects
+  .filter((candidate) => candidate.slug !== project.slug)
+  .sort((a, b) => {
+    const aScore = a.categories.filter((category) => project.categories.includes(category)).length;
+    const bScore = b.categories.filter((category) => project.categories.includes(category)).length;
+    return bScore - aScore;
+  })
+  .slice(0, 2);
+
+const routePath = `/projects/${project.slug}/`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: project.title,
+  description: project.shortDescription,
+  author: { "@type": "Person", name: site.name },
+  codeRepository: project.links.find((link) => link.href.includes("github.com"))?.href,
+  programmingLanguage: project.technologies,
+  inLanguage: locale,
+  url: Astro.url.href,
+};
+---
+
+<BaseLayout
+  title={`${project.title} | ${site.name}`}
+  description={project.shortDescription}
+  pageType="article"
+  schema={schema}
+  bodyClass="project-page"
+  locale={locale}
+  routePath={routePath}
+>
+  <article>
+    <header class:list={["project-hero", `accent-${project.accent}`]}>
+      <div class="section-shell project-hero-inner">
+        <div data-reveal>
+          <a class="back-link" href={localizedPath(locale, "/#projects")}><span aria-hidden="true">←</span> {copy.common.projects}</a>
+          <p class="project-kicker">{project.categories.join(" · ")} · {project.year}</p>
+          <h1 transition:name={`project-title-${project.slug}`}>{project.title}</h1>
+          <p class="project-intro">{project.description}</p>
+        </div>
+        <aside class="project-facts" data-reveal aria-label={copy.project.summary}>
+          <div><span>{copy.project.status}</span><strong>{project.status}</strong></div>
+          <div><span>{copy.project.focus}</span><strong>{project.categories.join(" / ")}</strong></div>
+          <div><span>{copy.project.stack}</span><strong>{project.technologies.join(" · ")}</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="section-shell case-study-layout">
+      <aside class="case-navigation" aria-label={copy.project.sectionsLabel} data-reveal>
+        <span>{copy.project.caseStudy}</span>
+        <a href="#overview">{copy.project.overview}</a>
+        <a href="#problem">{copy.project.problem}</a>
+        <a href="#architecture">{copy.project.architecture}</a>
+        <a href="#implementation">{copy.project.implementation}</a>
+        <a href="#results">{copy.project.results}</a>
+      </aside>
+
+      <div class="case-content">
+        <section id="overview" data-reveal>
+          <p class="eyebrow"><span>01</span> {copy.project.overview}</p>
+          <h2>{copy.project.overviewTitle}</h2>
+          <div class="highlight-grid">{project.highlights.map((highlight) => <span>{highlight}</span>)}</div>
+          <p>{project.description}</p>
+        </section>
+
+        <section id="problem" data-reveal>
+          <p class="eyebrow"><span>02</span> {copy.project.problem}</p>
+          <h2>{copy.project.problemTitle}</h2>
+          <p class="large-copy">{project.problem}</p>
+        </section>
+
+        <section id="architecture" data-reveal>
+          <p class="eyebrow"><span>03</span> {copy.project.architecture}</p>
+          <h2>{copy.project.architectureTitle}</h2>
+          <ArchitectureDiagram
+            nodes={project.architecture}
+            locale={locale}
+            label={`${project.title} · ${copy.project.architectureSuffix}`}
+          />
+        </section>
+
+        <section id="implementation" data-reveal>
+          <p class="eyebrow"><span>04</span> {copy.project.implementation}</p>
+          <h2>{copy.project.implementationTitle}</h2>
+          <ol class="implementation-list">
+            {project.implementation.map((item, index) => (
+              <li><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>
+            ))}
+          </ol>
+        </section>
+
+        <section id="results" data-reveal>
+          <p class="eyebrow"><span>05</span> {copy.project.results}</p>
+          <h2>{copy.project.resultsTitle}</h2>
+          <ul class="results-list">{project.results.map((result) => <li>{result}</li>)}</ul>
+          {project.links.length > 0 && (
+            <div class="case-links">
+              {project.links.map((link) => <a class="button" href={link.href}>{link.label} ↗</a>)}
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+
+    <section class="section-shell related-section">
+      <header class="section-heading">
+        <p class="eyebrow"><span>06</span> {copy.project.continueExploring}</p>
+        <h2>{copy.project.relatedSystems}</h2>
+      </header>
+      <div class="project-grid secondary-projects">
+        {related.map((candidate) => <ProjectCard project={candidate} locale={locale} featured={false} />)}
+      </div>
+    </section>
+  </article>
+</BaseLayout>
+

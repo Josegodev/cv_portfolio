@@ -1,5 +1,15 @@
 ---
-import { experiences } from "../data/site";
+import { getLocalizedSiteData } from "../data/site-localized";
+import type { Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { experiences } = getLocalizedSiteData(locale);
+const copy = getUi(locale);
 ---
 
 <div class="timeline" data-timeline>
@@ -26,7 +36,7 @@ import { experiences } from "../data/site";
           <ul>
             {experience.impact.map((item) => <li>{item}</li>)}
           </ul>
-          <div class="tag-list" aria-label={`${experience.company} tools`}>
+          <div class="tag-list" aria-label={`${experience.company} · ${copy.projectCard.technologies}`}>
             {experience.tools.map((tool) => <span>{tool}</span>)}
           </div>
         </div>

@@ -1,13 +1,16 @@
 ---
 import type { Project } from "../data/projects";
-import { withBase } from "../utils/paths";
+import { localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
 
 interface Props {
   project: Project;
+  locale: Locale;
   featured?: boolean;
 }
 
-const { project, featured = project.featured } = Astro.props;
+const { project, locale, featured = project.featured } = Astro.props;
+const copy = getUi(locale);
 ---
 
 <article
@@ -22,7 +25,7 @@ const { project, featured = project.featured } = Astro.props;
     <h3>{project.title}</h3>
     <p>{project.shortDescription}</p>
   </div>
-  <ul class="project-highlights" aria-label={`${project.title} highlights`}>
+  <ul class="project-highlights" aria-label={`${project.title} · ${copy.projectCard.highlights}`}>
     {project.highlights.slice(0, 3).map((highlight) => <li>{highlight}</li>)}
   </ul>
   <div class="card-architecture" aria-hidden="true">
@@ -33,14 +36,14 @@ const { project, featured = project.featured } = Astro.props;
       </>
     ))}
   </div>
-  <div class="project-stack" aria-label={`${project.title} technologies`}>
+  <div class="project-stack" aria-label={`${project.title} · ${copy.projectCard.technologies}`}>
     {project.technologies.slice(0, 5).map((technology) => <span>{technology}</span>)}
   </div>
   <a
     class="card-link"
-    href={withBase(`/projects/${project.slug}/`)}
-    aria-label={`View ${project.title} project`}
+    href={localizedPath(locale, `/projects/${project.slug}/`)}
+    aria-label={copy.projectCard.viewProjectLabel.replace("{title}", project.title)}
   >
-    View project <span aria-hidden="true">↗</span>
+    {copy.projectCard.viewProject} <span aria-hidden="true">↗</span>
   </a>
 </article>

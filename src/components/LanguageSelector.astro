@@ -1,0 +1,28 @@
+---
+import { localeNames, locales, localizedPath, type Locale } from "../i18n/config";
+import { getUi } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  routePath: string;
+}
+
+const { locale, routePath } = Astro.props;
+const copy = getUi(locale);
+---
+
+<div class="language-selector">
+  <label for="portfolio-language">{copy.common.language}</label>
+  <select id="portfolio-language" data-language-select aria-label={copy.common.language}>
+    {locales.map((candidate) => (
+      <option
+        value={localizedPath(candidate, routePath)}
+        selected={candidate === locale}
+        lang={candidate}
+      >
+        {localeNames[candidate]}
+      </option>
+    ))}
+  </select>
+</div>
+

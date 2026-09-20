@@ -1,0 +1,25 @@
+---
+import { getLocalizedProjects } from "../../../data/projects-localized";
+import type { Project } from "../../../data/projects";
+import { translatedLocales, type Locale } from "../../../i18n/config";
+import ProjectView from "../../../views/ProjectView.astro";
+
+export function getStaticPaths() {
+  return translatedLocales.flatMap((locale) =>
+    getLocalizedProjects(locale).map((project) => ({
+      params: { lang: locale, slug: project.slug },
+      props: { locale, project },
+    })),
+  );
+}
+
+interface Props {
+  locale: Locale;
+  project: Project;
+}
+
+const { locale, project } = Astro.props;
+---
+
+<ProjectView locale={locale} project={project} />
+
