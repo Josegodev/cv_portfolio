@@ -1,0 +1,20 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../utils/paths";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div>
+    <a class="footer-name" href={withBase()}>{site.name}</a>
+    <p>Engineering · Automation · AI</p>
+  </div>
+  <nav aria-label="Footer navigation">
+    <a href={site.github} rel="me">GitHub</a>
+    <a href={site.linkedin} rel="me">LinkedIn</a>
+    <a href={withBase("/ai-assisted-development/")}>AI-assisted development</a>
+    <a href={site.repository}>Source</a>
+  </nav>
+  <p class="footer-meta">© {year} · Built as a static, privacy-conscious portfolio.</p>
+</footer>

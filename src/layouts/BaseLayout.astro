@@ -1,0 +1,110 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { site } from "../data/site";
+import { withBase } from "../utils/paths";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  pageType?: "website" | "article" | "profile";
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+  bodyClass?: string;
+}
+
+const {
+  title = `${site.name} | Engineering, Automation & AI`,
+  description = site.description,
+  image = "/assets/hardware-manufacturing-pcb-styled.jpg",
+  pageType = "website",
+  schema,
+  bodyClass = "",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(withBase(image), Astro.site);
+const defaultSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.name,
+    url: new URL(withBase(), Astro.site).href,
+    jobTitle: "Engineer working across industrial operations, automation and applied AI",
+    sameAs: [site.github, site.linkedin],
+    knowsAbout: [
+      "Industrial operations",
+      "Manufacturing engineering",
+      "Automation",
+      "Python",
+      "Applied artificial intelligence",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: `${site.name} Portfolio`,
+    url: new URL(withBase(), Astro.site).href,
+    description: site.description,
+  },
+];
+
+const schemaValue = schema ?? defaultSchema;
+---
+
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1118" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="manifest" href={withBase("/site.webmanifest")} />
+    <link rel="sitemap" href={withBase("/sitemap-index.xml")} />
+
+    <meta property="og:type" content={pageType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="Engineering, industrial operations, automation and applied AI portfolio" />
+    <meta property="og:site_name" content={`${site.name} Portfolio`} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content="Engineering, industrial operations, automation and applied AI portfolio" />
+
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schemaValue)} />
+    <script is:inline>
+      (() => {
+        try {
+          const saved = localStorage.getItem("portfolio-theme");
+          document.documentElement.dataset.theme =
+            saved === "light" || saved === "dark" ? saved : "system";
+        } catch {
+          document.documentElement.dataset.theme = "system";
+        }
+      })();
+    </script>
+    <ClientRouter fallback="swap" />
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import "../scripts/site";
+    </script>
+  </body>
+</html>

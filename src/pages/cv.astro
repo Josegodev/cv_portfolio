@@ -1,0 +1,85 @@
+---
+import { education, experiences, site, skillGroups } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
+---
+
+<BaseLayout
+  title={`CV | ${site.name}`}
+  description={`Printable CV for ${site.name}: engineering, industrial operations, automation and applied AI.`}
+  pageType="profile"
+  bodyClass="cv-page"
+>
+  <article class="cv-document section-shell">
+    <header class="cv-header">
+      <div>
+        <a class="back-link no-print" href={withBase()}><span aria-hidden="true">←</span> Portfolio</a>
+        <h1>{site.name}</h1>
+        <p>{site.role}</p>
+      </div>
+      <div class="cv-contact">
+        <span>{site.location}</span>
+        <a href={site.linkedin}>LinkedIn</a>
+        <a href={site.github}>GitHub</a>
+        <button class="button primary no-print" type="button" data-print-cv>Print / save as PDF</button>
+      </div>
+    </header>
+
+    <section class="cv-summary">
+      <h2>Profile</h2>
+      <p>
+        Engineer combining industrial systems, production coordination, automation and
+        applied AI/software. Experience spans materials, aerospace industrialization,
+        electronics manufacturing, piping documentation and practical reporting automation.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <div class="cv-experience">
+        {experiences.map((experience) => (
+          <article>
+            <div>
+              <span>{experience.period}</span>
+              <strong>{experience.company}{experience.client ? ` / ${experience.client}` : ""}</strong>
+            </div>
+            <div>
+              <h3>{experience.role}</h3>
+              <p>{experience.location} · {experience.sector}</p>
+              <ul>{experience.impact.map((item) => <li>{item}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Technical stack</h2>
+      <div class="cv-skills">
+        {skillGroups.map((group) => (
+          <div><strong>{group.title}</strong><span>{group.items.join(" · ")}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="cv-education">
+        {education.map((item) => (
+          <div><strong>{item.qualification}</strong><span>{item.location} · {item.focus}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <p class="cv-note">
+      This public CV intentionally excludes private project data, contractual details and
+      internal company documentation.
+    </p>
+  </article>
+
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      document.querySelector("[data-print-cv]")?.addEventListener("click", () => window.print(), { once: true });
+    });
+  </script>
+</BaseLayout>

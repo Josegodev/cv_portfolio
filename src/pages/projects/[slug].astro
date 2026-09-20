@@ -1,0 +1,133 @@
+---
+import ArchitectureDiagram from "../../components/ArchitectureDiagram.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { projects, type Project } from "../../data/projects";
+import { site } from "../../data/site";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../utils/paths";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const related = projects
+  .filter((candidate) => candidate.slug !== project.slug)
+  .sort((a, b) => {
+    const aScore = a.categories.filter((category) => project.categories.includes(category)).length;
+    const bScore = b.categories.filter((category) => project.categories.includes(category)).length;
+    return bScore - aScore;
+  })
+  .slice(0, 2);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  name: project.title,
+  description: project.shortDescription,
+  author: { "@type": "Person", name: site.name },
+  codeRepository: project.links.find((link) => link.href.includes("github.com"))?.href,
+  programmingLanguage: project.technologies,
+  url: Astro.url.href,
+};
+---
+
+<BaseLayout
+  title={`${project.title} | ${site.name}`}
+  description={project.shortDescription}
+  pageType="article"
+  schema={schema}
+  bodyClass="project-page"
+>
+  <article>
+    <header class:list={["project-hero", `accent-${project.accent}`]}>
+      <div class="section-shell project-hero-inner">
+        <div data-reveal>
+          <a class="back-link" href={withBase("/#projects")}><span aria-hidden="true">←</span> Projects</a>
+          <p class="project-kicker">{project.categories.join(" · ")} · {project.year}</p>
+          <h1 transition:name={`project-title-${project.slug}`}>{project.title}</h1>
+          <p class="project-intro">{project.description}</p>
+        </div>
+        <aside class="project-facts" data-reveal aria-label="Project summary">
+          <div><span>Status</span><strong>{project.status}</strong></div>
+          <div><span>Focus</span><strong>{project.categories.join(" / ")}</strong></div>
+          <div><span>Stack</span><strong>{project.technologies.join(" · ")}</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <div class="section-shell case-study-layout">
+      <aside class="case-navigation" aria-label="Case study sections" data-reveal>
+        <span>CASE STUDY</span>
+        <a href="#overview">Overview</a>
+        <a href="#problem">Problem</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#implementation">Implementation</a>
+        <a href="#results">Results / status</a>
+      </aside>
+
+      <div class="case-content">
+        <section id="overview" data-reveal>
+          <p class="eyebrow"><span>01</span> Overview</p>
+          <h2>What this project demonstrates</h2>
+          <div class="highlight-grid">
+            {project.highlights.map((highlight) => <span>{highlight}</span>)}
+          </div>
+          <p>{project.description}</p>
+        </section>
+
+        <section id="problem" data-reveal>
+          <p class="eyebrow"><span>02</span> Problem</p>
+          <h2>The engineering constraint</h2>
+          <p class="large-copy">{project.problem}</p>
+        </section>
+
+        <section id="architecture" data-reveal>
+          <p class="eyebrow"><span>03</span> Architecture</p>
+          <h2>A controlled, readable flow</h2>
+          <ArchitectureDiagram nodes={project.architecture} label={`${project.title} architecture`} />
+        </section>
+
+        <section id="implementation" data-reveal>
+          <p class="eyebrow"><span>04</span> Implementation</p>
+          <h2>How the boundary is kept explicit</h2>
+          <ol class="implementation-list">
+            {project.implementation.map((item, index) => (
+              <li><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>
+            ))}
+          </ol>
+        </section>
+
+        <section id="results" data-reveal>
+          <p class="eyebrow"><span>05</span> Results / current status</p>
+          <h2>Evidence without inflated claims</h2>
+          <ul class="results-list">
+            {project.results.map((result) => <li>{result}</li>)}
+          </ul>
+          {project.links.length > 0 && (
+            <div class="case-links">
+              {project.links.map((link) => <a class="button" href={link.href}>{link.label} ↗</a>)}
+            </div>
+          )}
+        </section>
+      </div>
+    </div>
+
+    <section class="section-shell related-section">
+      <header class="section-heading">
+        <p class="eyebrow"><span>06</span> Continue exploring</p>
+        <h2>Related systems</h2>
+      </header>
+      <div class="project-grid secondary-projects">
+        {related.map((candidate) => <ProjectCard project={candidate} featured={false} />)}
+      </div>
+    </section>
+  </article>
+</BaseLayout>

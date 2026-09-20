@@ -1,0 +1,212 @@
+---
+import ExperienceTimeline from "../components/ExperienceTimeline.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
+import { education, site, skillGroups } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../utils/paths";
+
+const featuredProjects = projects.filter((project) => project.featured);
+---
+
+<BaseLayout>
+  <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy" data-reveal>
+      <p class="eyebrow"><span>01</span> Engineering systems profile</p>
+      <h1 id="hero-title">
+        Engineering the link between{" "}
+        <em>industrial work</em>{" "}and intelligent systems.
+      </h1>
+      <p class="hero-lead">
+        {site.description} From aerospace and manufacturing documentation to Python,
+        production reporting and local AI runtimes.
+      </p>
+      <div class="hero-actions" aria-label="Primary actions">
+        <a class="button primary" href="#projects">View projects</a>
+        <a class="button" href="#experience">Experience</a>
+        <a class="button quiet" href={withBase("/cv/")}>Download CV</a>
+      </div>
+      <div class="hero-links" aria-label="Professional profiles">
+        <a href={site.github}>GitHub <span aria-hidden="true">↗</span></a>
+        <a href={site.linkedin}>LinkedIn <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+
+    <div class="hero-schematic" data-hero-visual data-reveal aria-label="Industrial data to applied AI diagram">
+      <div class="schematic-header">
+        <span>LIVE SYSTEM MAP</span>
+        <b>JGO · 2026</b>
+      </div>
+      <div class="schematic-flow" aria-hidden="true">
+        <div class="schematic-node node-input">
+          <span>01</span><strong>FIELD</strong><small>production · evidence</small>
+        </div>
+        <div class="schematic-line line-a"></div>
+        <div class="schematic-node node-process">
+          <span>02</span><strong>AUTOMATE</strong><small>validate · transform</small>
+        </div>
+        <div class="schematic-line line-b"></div>
+        <div class="schematic-node node-output">
+          <span>03</span><strong>DECIDE</strong><small>report · trace</small>
+        </div>
+        <div class="schematic-pulse"></div>
+      </div>
+      <div class="schematic-footer">
+        <span>INDUSTRIAL DATA</span>
+        <i></i>
+        <span>AUTOMATION</span>
+        <i></i>
+        <span>APPLIED AI</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="profile-strip" aria-label="Profile focus">
+    <div><span>Foundation</span><strong>Materials & manufacturing</strong></div>
+    <div><span>Operating context</span><strong>Industrial & aerospace</strong></div>
+    <div><span>Leverage</span><strong>Automation & applied AI</strong></div>
+  </section>
+
+  <section class="section-shell section-grid" id="about" data-section="about">
+    <header class="section-heading" data-reveal>
+      <p class="eyebrow"><span>02</span> About</p>
+      <h2>Software as an engineering tool, not a separate identity.</h2>
+    </header>
+    <div class="about-copy" data-reveal>
+      <p class="large-copy">
+        I am a Materials Engineer shaped by industrial projects, aerospace manufacturing,
+        technical coordination and documentation-heavy environments.
+      </p>
+      <div class="about-columns">
+        <p>
+          That background defines how I build software: explicit inputs, controlled
+          decisions, traceable outputs and honest limits. Python, backend services and
+          local AI are practical extensions of engineering work.
+        </p>
+        <p>
+          Current interests include production-report automation, local LLM runtimes,
+          retrieval with visible evidence, persistent conversational systems and
+          reproducible image-generation workflows.
+        </p>
+      </div>
+      <div class="principles" aria-label="Working principles">
+        <span>01 · Verify before claiming</span>
+        <span>02 · Automate repeatable work</span>
+        <span>03 · Keep evidence visible</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-shell" id="experience" data-section="experience">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>03</span> Experience</p>
+        <h2>From physical production to automated information flows.</h2>
+      </div>
+      <p>
+        Select an entry to expand its scope. The timeline separates employer, client or
+        project context, responsibilities and tools.
+      </p>
+    </header>
+    <figure class="experience-visual" data-reveal>
+      <img
+        src={withBase("/assets/ariane-6-assembly-hangar.jpg")}
+        alt="Ariane 6 assembly in an aerospace manufacturing hangar"
+        width="1600"
+        height="893"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption>
+        Aerospace industrialization · assembly context · technical instructions · production evidence
+      </figcaption>
+    </figure>
+    <div data-reveal>
+      <ExperienceTimeline />
+    </div>
+  </section>
+
+  <section class="section-shell" id="projects" data-section="projects">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>04</span> Selected projects</p>
+        <h2>Systems built around real constraints.</h2>
+      </div>
+      <p>
+        These are not repository thumbnails. Each case explains the problem, architecture,
+        implementation boundary and current maturity.
+      </p>
+    </header>
+    <div class="project-grid">
+      {featuredProjects.map((project, index) => (
+        <div data-reveal style={`--reveal-delay: ${Math.min(index, 3) * 70}ms`}>
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+    <details class="more-projects" data-reveal>
+      <summary>View additional technical studies</summary>
+      <div class="project-grid secondary-projects">
+        {projects.filter((project) => !project.featured).map((project) => (
+          <ProjectCard project={project} featured={false} />
+        ))}
+      </div>
+    </details>
+  </section>
+
+  <section class="section-shell" id="stack" data-section="stack">
+    <header class="section-heading split-heading" data-reveal>
+      <div>
+        <p class="eyebrow"><span>05</span> Working stack</p>
+        <h2>Grouped by responsibility, not percentage.</h2>
+      </div>
+      <p>
+        The stack spans physical engineering, data treatment, backend contracts and local
+        AI. Tools appear only where they support a real workflow.
+      </p>
+    </header>
+    <div class="stack-grid">
+      {skillGroups.map((group, index) => (
+        <article data-reveal style={`--reveal-delay: ${index * 55}ms`}>
+          <span class="stack-index">{String(index + 1).padStart(2, "0")}</span>
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+          <ul>
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-shell" id="education" data-section="education">
+    <header class="section-heading" data-reveal>
+      <p class="eyebrow"><span>06</span> Education</p>
+      <h2>A multidisciplinary engineering foundation.</h2>
+    </header>
+    <div class="education-grid">
+      {education.map((item, index) => (
+        <article data-reveal style={`--reveal-delay: ${index * 60}ms`}>
+          <span>{String(index + 1).padStart(2, "0")} / {item.location}</span>
+          <h3>{item.qualification}</h3>
+          <p>{item.focus}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="contact-section section-shell" id="contact" data-section="contact">
+    <div data-reveal>
+      <p class="eyebrow"><span>07</span> Contact</p>
+      <h2>Interested in engineering work where operations, automation and AI meet?</h2>
+    </div>
+    <div class="contact-actions" data-reveal>
+      <p>
+        The fastest public channels are LinkedIn and GitHub. No contact form means no
+        third-party tracking and no personal data stored by this site.
+      </p>
+      <a class="button primary" href={site.linkedin}>Connect on LinkedIn</a>
+      <a class="button" href={site.github}>Review GitHub</a>
+    </div>
+  </section>
+</BaseLayout>

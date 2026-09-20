@@ -1,17 +1,32 @@
 {
-  "name": "new-project",
+  "name": "jose-gonzalez-oliva-portfolio",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Engineering, industrial operations, automation and applied AI portfolio.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "check:links": "node scripts/check-links.mjs",
+    "test": "npm run check && npm run build && npm run check:links",
+    "generate:transformer-study": "node generate_transformer_study.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "portfolio",
+    "engineering",
+    "automation",
+    "applied-ai"
+  ],
+  "author": "Jose Gonzalez Oliva",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
-    "pdfjs-dist": "^5.7.284",
     "pdfkit": "^0.18.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.3",
+    "typescript": "^6.0.3"
   }
 }

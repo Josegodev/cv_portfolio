@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://josegodev.github.io/cv_portfolio/sitemap-index.xml

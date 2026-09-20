@@ -1,0 +1,36 @@
+---
+import { experiences } from "../data/site";
+---
+
+<div class="timeline" data-timeline>
+  {experiences.map((experience, index) => (
+    <article class:list={["timeline-entry", { current: experience.featured }]}>
+      <div class="timeline-marker" aria-hidden="true">
+        <span>{String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <details open={index === 0}>
+        <summary>
+          <span class="timeline-period">{experience.period}</span>
+          <span class="timeline-heading">
+            <strong>{experience.role}</strong>
+            <span>{experience.company}{experience.client ? ` / ${experience.client}` : ""}</span>
+          </span>
+          <span class="timeline-open" aria-hidden="true">+</span>
+        </summary>
+        <div class="timeline-content">
+          <div class="timeline-context">
+            <span>{experience.location}</span>
+            <span>{experience.sector}</span>
+          </div>
+          <p>{experience.summary}</p>
+          <ul>
+            {experience.impact.map((item) => <li>{item}</li>)}
+          </ul>
+          <div class="tag-list" aria-label={`${experience.company} tools`}>
+            {experience.tools.map((tool) => <span>{tool}</span>)}
+          </div>
+        </div>
+      </details>
+    </article>
+  ))}
+</div>

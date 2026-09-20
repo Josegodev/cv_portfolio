@@ -1,0 +1,21 @@
+{
+  "query": "Which components are involved in a traceable AI execution?",
+  "retrieval_status": "EVIDENCE_FOUND",
+  "top_k": 2,
+  "chunks": [
+    {
+      "chunk_id": 101,
+      "source": "public-demo/runtime-overview.md",
+      "score": 4,
+      "excerpt": "The backend receives a request, validates the contract, selects the provider and records a trace for the execution."
+    },
+    {
+      "chunk_id": 104,
+      "source": "public-demo/observability.md",
+      "score": 3,
+      "excerpt": "The trace includes trace_id, RAG status, latency, input and output tokens, and an error code when applicable."
+    }
+  ],
+  "answer_policy": "Answer only with retrieved evidence. If there is not enough evidence, return NO_EVIDENCE_FOR_ANSWER.",
+  "published_corpus": "synthetic_demo_only"
+}

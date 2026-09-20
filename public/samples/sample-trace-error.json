@@ -1,0 +1,23 @@
+{
+  "trace_id": "trc_public_demo_error_001",
+  "source": "web",
+  "runtime": "fastapi",
+  "provider": "ollama",
+  "model": "local-model-demo",
+  "conversation_id": "conv_demo_002",
+  "context_window": 8,
+  "temperature": 0.2,
+  "retrieval_status": "insufficient_evidence",
+  "tokens_input": 836,
+  "tokens_output": 74,
+  "latency_ms": 960,
+  "output_tokens_per_second": 7.7,
+  "cost_estimate_eur": 0.0,
+  "status": "error",
+  "error_code": "policy_block",
+  "fallback_used": true,
+  "error": {
+    "type": "policy_block",
+    "message": "The answer requires document evidence that is not available in the retrieved context."
+  }
+}

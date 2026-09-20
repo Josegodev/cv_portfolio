@@ -1,0 +1,46 @@
+---
+import type { Project } from "../data/projects";
+import { withBase } from "../utils/paths";
+
+interface Props {
+  project: Project;
+  featured?: boolean;
+}
+
+const { project, featured = project.featured } = Astro.props;
+---
+
+<article
+  class:list={["project-card", `accent-${project.accent}`, { featured }]}
+  data-project-card
+>
+  <div class="project-card-top">
+    <p class="project-kicker">{project.categories.join(" · ")}</p>
+    <span class="status-pill">{project.status}</span>
+  </div>
+  <div>
+    <h3>{project.title}</h3>
+    <p>{project.shortDescription}</p>
+  </div>
+  <ul class="project-highlights" aria-label={`${project.title} highlights`}>
+    {project.highlights.slice(0, 3).map((highlight) => <li>{highlight}</li>)}
+  </ul>
+  <div class="card-architecture" aria-hidden="true">
+    {project.architecture.slice(0, 3).map((node, index) => (
+      <>
+        <span>{node}</span>
+        {index < Math.min(project.architecture.length, 3) - 1 && <i>→</i>}
+      </>
+    ))}
+  </div>
+  <div class="project-stack" aria-label={`${project.title} technologies`}>
+    {project.technologies.slice(0, 5).map((technology) => <span>{technology}</span>)}
+  </div>
+  <a
+    class="card-link"
+    href={withBase(`/projects/${project.slug}/`)}
+    aria-label={`View ${project.title} project`}
+  >
+    View project <span aria-hidden="true">↗</span>
+  </a>
+</article>

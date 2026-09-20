@@ -1,0 +1,21 @@
+{
+  "trace_id": "trc_public_demo_ok_001",
+  "source": "web_ui",
+  "runtime": "fastapi",
+  "provider": "ollama",
+  "model": "local-model-demo",
+  "conversation_id": "conv_demo_001",
+  "context_window": 12,
+  "temperature": 0.2,
+  "retrieval_status": "evidence_found",
+  "tokens_input": 1210,
+  "tokens_output": 286,
+  "latency_ms": 1730,
+  "output_tokens_per_second": 19.4,
+  "cost_estimate_eur": 0.0,
+  "status": "ok",
+  "error_code": null,
+  "fallback_used": false,
+  "chunk_ids": [101, 104],
+  "error": null
+}

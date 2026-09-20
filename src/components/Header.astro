@@ -1,0 +1,66 @@
+---
+import { site } from "../data/site";
+import { withBase } from "../utils/paths";
+
+const navigation = [
+  { label: "About", section: "about" },
+  { label: "Experience", section: "experience" },
+  { label: "Projects", section: "projects" },
+  { label: "Stack", section: "stack" },
+  { label: "Education", section: "education" },
+  { label: "Contact", section: "contact" },
+];
+
+const pathname = Astro.url.pathname;
+const pageSection = pathname.includes("/projects/")
+  ? "projects"
+  : pathname.includes("/cv/")
+    ? "experience"
+    : undefined;
+---
+
+<header class="site-header" data-site-header transition:name="site-header">
+  <a class="brand" href={withBase()} aria-label={`${site.name}, home`}>
+    <span class="brand-mark" aria-hidden="true">{site.shortName}</span>
+    <span class="brand-copy">
+      <strong>{site.name}</strong>
+      <small>Engineering · Automation · AI</small>
+    </span>
+  </a>
+
+  <div class="header-actions">
+    <nav class="site-nav" id="site-navigation" data-site-nav aria-label="Primary navigation">
+      {navigation.map((item) => (
+        <a
+          href={withBase(`/#${item.section}`)}
+          data-nav-link={item.section}
+          class:list={{ active: pageSection === item.section }}
+          aria-current={pageSection === item.section ? "page" : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Change color theme"
+      >
+        <span class="theme-icon" aria-hidden="true">◐</span>
+        <span data-theme-label>System</span>
+      </button>
+    </nav>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      data-nav-toggle
+      aria-label="Open navigation"
+      aria-controls="site-navigation"
+      aria-expanded="false"
+    >
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
