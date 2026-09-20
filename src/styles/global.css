@@ -592,13 +592,14 @@
 
   .schematic-node {
     position: absolute;
+    z-index: 2;
     display: grid;
     width: min(13rem, 64%);
     min-height: 7.2rem;
     align-content: center;
     padding: 1.2rem;
     border: 1px solid var(--line-strong);
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    background: color-mix(in srgb, var(--surface) 96%, var(--bg-deep));
     box-shadow: 0 14px 40px rgb(0 0 0 / 18%);
   }
 
@@ -634,6 +635,7 @@
 
   .schematic-line {
     position: absolute;
+    z-index: 1;
     width: 34%;
     border-top: 1px dashed var(--primary);
     transform-origin: left;
@@ -653,6 +655,7 @@
 
   .schematic-pulse {
     position: absolute;
+    z-index: 3;
     top: 48%;
     left: 42%;
     width: 0.75rem;
